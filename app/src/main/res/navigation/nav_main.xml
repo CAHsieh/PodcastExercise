@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/castListFragment">
+
+    <fragment
+        android:id="@+id/castListFragment"
+        android:name="pet.ca.podcastexercise.castlist.CastListFragment"
+        android:label="fragment_cast_list"
+        tools:layout="@layout/fragment_cast_list">
+        <action
+            android:id="@+id/action_castListFragment_to_castDetailFragment"
+            app:destination="@id/castDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/castDetailFragment"
+        android:name="pet.ca.podcastexercise.castdetail.CastDetailFragment"
+        android:label="fragment_cast_detail"
+        tools:layout="@layout/fragment_cast_detail">
+        <action
+            android:id="@+id/action_castDetailFragment_to_playFragment"
+            app:destination="@id/playFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/playFragment"
+        android:name="pet.ca.podcastexercise.play.PlayFragment"
+        android:label="fragment_play"
+        tools:layout="@layout/fragment_play" />
+</navigation>
