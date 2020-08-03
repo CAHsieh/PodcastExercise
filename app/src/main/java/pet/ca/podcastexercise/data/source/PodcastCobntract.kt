@@ -6,7 +6,7 @@ interface IPodcastDataSource {
 
     suspend fun retrievePodcast(limit: Int, callback: (List<Podcast>) -> Unit)
 
-    suspend fun retrieveMorePodcast(limit: Int, offset: Int, callback: (List<Podcast>) -> Unit)
+    suspend fun retrieveAllPodcast(callback: (List<Podcast>) -> Unit)
 
 }
 

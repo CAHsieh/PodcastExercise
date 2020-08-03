@@ -9,7 +9,7 @@ class CollectionLocalDataSource internal constructor(
     private val collectionDao: CollectionDao,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 )  : ICollectionDataSource {
-    override suspend fun retrieveCollection(callback: (Collection) -> Unit) {
+    override suspend fun retrieveCollection(callback: (Collection?) -> Unit) {
         TODO("Not yet implemented")
     }
 }

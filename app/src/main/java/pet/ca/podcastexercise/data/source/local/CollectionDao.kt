@@ -13,6 +13,6 @@ interface CollectionDao {
     fun loadCollection(limit: Int, offset: Int): List<Collection>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(collections: List<Collection>)
+    fun insert(collections: Collection)
 
 }

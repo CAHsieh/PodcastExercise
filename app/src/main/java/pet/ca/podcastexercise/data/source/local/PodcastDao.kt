@@ -12,6 +12,9 @@ interface PodcastDao {
     @Query("Select * from podcast limit :limit offset :offset")
     fun loadPodcast(limit: Int, offset: Int): List<Podcast>
 
+    @Query("Select * from podcast")
+    fun loadAllPodcast(): List<Podcast>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(podcastList: List<Podcast>)
 
