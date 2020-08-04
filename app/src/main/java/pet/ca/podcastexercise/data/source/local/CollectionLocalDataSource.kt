@@ -13,7 +13,14 @@ class CollectionLocalDataSource internal constructor(
 ) : ICollectionDataSource {
     override suspend fun retrieveCollection(callback: (CollectionAndAllContentEntity?) -> Unit) {
         GlobalScope.launch(ioDispatcher) {
-            callback.invoke(collectionDao.loadCollection()[0])
+            val list = collectionDao.loadCollection()
+            callback.invoke(
+                if (list.isEmpty()) {
+                    null
+                } else {
+                    list[0]
+                }
+            )
         }
     }
 }

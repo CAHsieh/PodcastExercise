@@ -1,16 +1,19 @@
 package pet.ca.podcastexercise.data
 
+import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 
+@Parcelize
 data class ContentFeed(
     val contentUrl: String,
     val desc: String,
     val publishedDate: String,
     val title: String
-)
+) : Parcelable
 
 fun ContentFeed.toEntity(collectionId: Int): ContentFeedEntity {
     return ContentFeedEntity(

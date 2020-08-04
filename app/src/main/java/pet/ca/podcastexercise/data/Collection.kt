@@ -60,12 +60,12 @@ data class CollectionEntity(
 data class CollectionAndAllContentEntity(
 
     @Embedded
-    var collection: CollectionEntity? = null,
+    var collection: CollectionEntity,
 
     @Relation(
         parentColumn = "collectionId",
         entityColumn = "collectionId",
         entity = ContentFeedEntity::class
     )
-    var contents: List<ContentFeedEntity>? = null
+    var contents: List<ContentFeedEntity>
 )

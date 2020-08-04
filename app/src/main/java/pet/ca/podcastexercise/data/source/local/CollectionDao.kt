@@ -12,7 +12,7 @@ import pet.ca.podcastexercise.data.ContentFeedEntity
 interface CollectionDao {
 
     @Query("Select * from collectionentity")
-    fun loadCollection(): List<CollectionAndAllContentEntity?>
+    fun loadCollection(): List<CollectionAndAllContentEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(collection: CollectionEntity)

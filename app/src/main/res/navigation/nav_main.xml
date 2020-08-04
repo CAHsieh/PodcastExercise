@@ -12,20 +12,51 @@
         tools:layout="@layout/fragment_cast_list">
         <action
             android:id="@+id/action_castListFragment_to_castDetailFragment"
-            app:destination="@id/castDetailFragment" />
+            app:destination="@id/castDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/castDetailFragment"
         android:name="pet.ca.podcastexercise.castdetail.CastDetailFragment"
-        android:label=""
+        android:label="{dynamicTitle}"
         tools:layout="@layout/fragment_cast_detail">
+
+        <argument
+            android:name="dynamicTitle"
+            app:argType="string" />
+
+        <argument
+            android:name="podcast"
+            app:argType="pet.ca.podcastexercise.data.Podcast" />
+
         <action
             android:id="@+id/action_castDetailFragment_to_playFragment"
-            app:destination="@id/playFragment" />
+            app:destination="@id/playFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/playFragment"
         android:name="pet.ca.podcastexercise.play.PlayFragment"
         android:label=""
-        tools:layout="@layout/fragment_play" />
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        tools:layout="@layout/fragment_play">
+
+        <argument
+            android:name="thumbnailUrl"
+            app:argType="string" />
+
+        <argument
+            android:name="episode"
+            app:argType="pet.ca.podcastexercise.data.ContentFeed" />
+
+    </fragment>
 </navigation>

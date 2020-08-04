@@ -47,6 +47,10 @@ class CastListAdapter(
             itemView.artistName.text = cast.artistName
             itemView.name.text = cast.name
 
+            itemView.thumbnail.transitionName = "thumbnail_${adapterPosition}"
+            itemView.artistName.transitionName = "artistName_${adapterPosition}"
+            itemView.name.transitionName = "name_${adapterPosition}"
+
             itemView.setOnClickListener {
                 onPodcastClickListener?.invoke(it, cast)
             }

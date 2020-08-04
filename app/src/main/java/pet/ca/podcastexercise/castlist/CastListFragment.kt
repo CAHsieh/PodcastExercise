@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_cast_list.*
+import kotlinx.android.synthetic.main.item_cast.view.*
 import pet.ca.podcastexercise.MainActivity
 import pet.ca.podcastexercise.R
 import pet.ca.podcastexercise.utils.getViewModelFactory
@@ -55,20 +57,21 @@ class CastListFragment : Fragment() {
     }
 
     private fun setCallback() {
-        adapter.onPodcastClickListener = { view, exhibit ->
+        adapter.onPodcastClickListener = { view, podcast ->
             (activity as MainActivity).showLoading()
 
-//            val action = ExhibitFragmentDirections.actionExhibitFragmentToPlantsFragment(
-//                exhibit.E_Name,
-//                exhibit
-//            )
-//
-//            val extras = FragmentNavigatorExtras(
-//                view.thumbnail to "thumbnailExhibit",
-//                view.desView to "exhibitDes"
-//            )
+            val action = CastListFragmentDirections.actionCastListFragmentToCastDetailFragment(
+                podcast.name,
+                podcast
+            )
 
-            findNavController().navigate(R.id.action_castListFragment_to_castDetailFragment)
+            val extras = FragmentNavigatorExtras(
+                view.thumbnail to "thumbnail",
+                view.name to "name",
+                view.artistName to "artistName"
+            )
+
+            findNavController().navigate(action, extras)
         }
 
         adapter.needMoreDataCallback = {
