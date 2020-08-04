@@ -4,15 +4,19 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import pet.ca.podcastexercise.data.Collection
+import pet.ca.podcastexercise.data.CollectionAndAllContentEntity
+import pet.ca.podcastexercise.data.CollectionEntity
+import pet.ca.podcastexercise.data.ContentFeedEntity
 
 @Dao
 interface CollectionDao {
 
-    @Query("Select * from collection limit :limit offset :offset")
-    fun loadCollection(limit: Int, offset: Int): List<Collection>
+    @Query("Select * from collectionentity")
+    fun loadCollection(): List<CollectionAndAllContentEntity?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(collections: Collection)
+    fun insert(collection: CollectionEntity)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertContentFeed(contents: List<ContentFeedEntity>)
 }

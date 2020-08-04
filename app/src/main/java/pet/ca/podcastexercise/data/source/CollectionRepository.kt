@@ -4,7 +4,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import pet.ca.podcastexercise.data.Collection
+import pet.ca.podcastexercise.data.CollectionAndAllContentEntity
 
 class CollectionRepository(
     private val collectionRemoteDataSource: ICollectionDataSource,
@@ -12,7 +12,7 @@ class CollectionRepository(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ICollectionRepository {
 
-    override suspend fun retrieveCollections(callback: (Collection?) -> Unit) {
+    override suspend fun retrieveCollections(callback: (CollectionAndAllContentEntity?) -> Unit) {
         collectionLocalDataSource.retrieveCollection { collection ->
             if (collection == null) {
                 GlobalScope.launch(ioDispatcher) {
