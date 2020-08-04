@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/castListFragment"
         android:name="pet.ca.podcastexercise.castlist.CastListFragment"
-        android:label="fragment_cast_list"
+        android:label="Casts"
         tools:layout="@layout/fragment_cast_list">
         <action
             android:id="@+id/action_castListFragment_to_castDetailFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/castDetailFragment"
         android:name="pet.ca.podcastexercise.castdetail.CastDetailFragment"
-        android:label="fragment_cast_detail"
+        android:label=""
         tools:layout="@layout/fragment_cast_detail">
         <action
             android:id="@+id/action_castDetailFragment_to_playFragment"
@@ -26,6 +26,6 @@
     <fragment
         android:id="@+id/playFragment"
         android:name="pet.ca.podcastexercise.play.PlayFragment"
-        android:label="fragment_play"
+        android:label=""
         tools:layout="@layout/fragment_play" />
 </navigation>

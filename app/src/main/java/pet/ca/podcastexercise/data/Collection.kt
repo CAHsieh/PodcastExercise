@@ -5,6 +5,14 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 
+data class DetailData0(
+    val `data`: DetailData
+)
+
+data class DetailData(
+    val collection: Collection
+)
+
 data class Collection(
     val artistId: Int,
     val artistName: String,

@@ -6,7 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import pet.ca.podcastexercise.data.CollectionAndAllContentEntity
-import pet.ca.podcastexercise.data.DetailData
+import pet.ca.podcastexercise.data.DetailData0
 import pet.ca.podcastexercise.data.source.ICollectionDataSource
 import pet.ca.podcastexercise.data.source.local.CollectionDao
 import pet.ca.podcastexercise.data.toEntity
@@ -20,23 +20,25 @@ class CollectionRemoteDataSource internal constructor(
 ) : ICollectionDataSource {
     override suspend fun retrieveCollection(callback: (CollectionAndAllContentEntity?) -> Unit) {
         GlobalScope.launch(ioDispatcher) {
-            ApiManager.getCastDetail(object : Callback<DetailData> {
-                override fun onFailure(call: Call<DetailData>, t: Throwable) {
+            ApiManager.getCastDetail(object : Callback<DetailData0> {
+                override fun onFailure(call: Call<DetailData0>, t: Throwable) {
                     Log.e(CollectionRemoteDataSource::class.java.simpleName, t.message!!)
                     callback.invoke(null)
                 }
 
-                override fun onResponse(call: Call<DetailData>, response: Response<DetailData>) {
+                override fun onResponse(call: Call<DetailData0>, response: Response<DetailData0>) {
                     if (response.isSuccessful && response.body() != null) {
-                        val collection = (response.body() as DetailData).collection
-                        collectionDao.insert(collection.toEntity())
-                        collectionDao.insertContentFeed(
-                            collection.contentFeed.map {
-                                it.toEntity(collection.collectionId)
-                            }
-                        )
+                        GlobalScope.launch(ioDispatcher) {
+                            val collection = (response.body() as DetailData0).data.collection
+                            collectionDao.insert(collection.toEntity())
+                            collectionDao.insertContentFeed(
+                                collection.contentFeed.map {
+                                    it.toEntity(collection.collectionId)
+                                }
+                            )
 
-                        callback.invoke(collectionDao.loadCollection()[0])
+                            callback.invoke(collectionDao.loadCollection()[0])
+                        }
                     } else {
                         onFailure(call, RuntimeException("onResponse Failure."))
                     }

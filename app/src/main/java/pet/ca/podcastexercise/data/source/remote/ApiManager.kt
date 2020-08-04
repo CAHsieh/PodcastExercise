@@ -2,12 +2,13 @@ package pet.ca.podcastexercise.data.source.remote
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
-import pet.ca.podcastexercise.data.DetailData
-import pet.ca.podcastexercise.data.PodcastData
+import pet.ca.podcastexercise.data.DetailData0
+import pet.ca.podcastexercise.data.PodcastData1
 import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+
 
 object ApiManager {
 
@@ -15,10 +16,14 @@ object ApiManager {
 
     init {
 
+//        val interceptor = HttpLoggingInterceptor()
+//        interceptor.level = HttpLoggingInterceptor.Level.BODY
+
         val okHttpClient = OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
             .writeTimeout(20, TimeUnit.SECONDS)
             .readTimeout(10, TimeUnit.SECONDS)
+//            .addInterceptor(interceptor)
             .build()
 
         val gson = GsonBuilder()
@@ -34,11 +39,11 @@ object ApiManager {
         apiService = retrofit.create(ApiService::class.java)
     }
 
-    fun getCasts(callback: Callback<PodcastData>) {
+    fun getCasts(callback: Callback<PodcastData1>) {
         apiService.getCasts().enqueue(callback)
     }
 
-    fun getCastDetail(callback: Callback<DetailData>) {
+    fun getCastDetail(callback: Callback<DetailData0>) {
         apiService.getCastDetail().enqueue(callback)
     }
 }
