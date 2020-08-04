@@ -18,10 +18,42 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_percent="0.7" />
 
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/half_grid_unit"
+        android:layout_marginTop="@dimen/two_grid_unit"
+        android:layout_marginEnd="@dimen/half_grid_unit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/thumbnail" />
+
+    <TextView
+        android:id="@+id/currentTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/half_grid_unit"
+        android:textColor="@color/md_grey_500"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/seekBar"
+        tools:text="15:05" />
+
+    <TextView
+        android:id="@+id/endTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/half_grid_unit"
+        android:textColor="@color/md_grey_500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/seekBar"
+        tools:text="37:56" />
+
     <TextView
         android:id="@+id/episodeName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/two_grid_unit"
         android:gravity="center"
         android:padding="@dimen/one_grid_unit"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -29,6 +61,35 @@
         android:transitionName="episodeName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/thumbnail" />
+        app:layout_constraintTop_toBottomOf="@id/currentTime" />
+
+
+    <ImageView
+        android:id="@+id/replay"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="@dimen/three_grid_unit"
+        android:src="@drawable/ic_baseline_replay_30_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/play"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/play"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/selector_play"
+        app:layout_constraintBottom_toBottomOf="@id/replay"
+        app:layout_constraintEnd_toStartOf="@id/forward"
+        app:layout_constraintStart_toEndOf="@id/replay" />
+
+    <ImageView
+        android:id="@+id/forward"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_baseline_forward_30_24"
+        app:layout_constraintBottom_toBottomOf="@id/replay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/play" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
