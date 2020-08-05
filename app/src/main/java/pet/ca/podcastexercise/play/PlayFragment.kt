@@ -95,6 +95,7 @@ class PlayFragment : Fragment() {
         mediaPlayer.setOnPreparedListener {
             mediaDuration = it.duration
             endTime.text = mediaDuration.toLong().toPlayTime()
+            loading.visibility = View.GONE
             it.start()
             play.isSelected = true
             play.isEnabled = true
