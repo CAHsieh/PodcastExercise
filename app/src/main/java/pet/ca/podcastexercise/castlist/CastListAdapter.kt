@@ -10,10 +10,11 @@ import pet.ca.podcastexercise.R
 import pet.ca.podcastexercise.data.Podcast
 import pet.ca.podcastexercise.utils.DiffUtilCallbackImpl
 import pet.ca.podcastexercise.utils.load
+import javax.inject.Inject
 
-class CastListAdapter(
+class CastListAdapter @Inject constructor() : RecyclerView.Adapter<CastListAdapter.ViewHolder>() {
+
     private val podcastList: MutableList<Podcast> = mutableListOf()
-) : RecyclerView.Adapter<CastListAdapter.ViewHolder>() {
 
     var onPodcastClickListener: ((View, Podcast) -> Unit)? = null
 

@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.TransitionInflater
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_cast_detail.*
 import kotlinx.android.synthetic.main.item_episode.view.*
@@ -19,14 +20,17 @@ import pet.ca.podcastexercise.MainActivity
 import pet.ca.podcastexercise.R
 import pet.ca.podcastexercise.utils.getViewModelFactory
 import pet.ca.podcastexercise.utils.load
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class CastDetailFragment : Fragment() {
 
     private val viewModel by viewModels<CastDetailViewModel> { getViewModelFactory() }
 
     private val args: CastDetailFragmentArgs by navArgs()
 
-    private lateinit var adapter: EpisodeAdapter
+    @Inject
+    lateinit var adapter: EpisodeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,7 +75,6 @@ class CastDetailFragment : Fragment() {
         //Init View
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.setHasFixedSize(true)
-        adapter = EpisodeAdapter()
         recyclerView.adapter = adapter
     }
 

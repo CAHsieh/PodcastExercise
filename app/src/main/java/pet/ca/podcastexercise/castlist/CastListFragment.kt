@@ -11,17 +11,21 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_cast_list.*
 import kotlinx.android.synthetic.main.item_cast.view.*
 import pet.ca.podcastexercise.MainActivity
 import pet.ca.podcastexercise.R
 import pet.ca.podcastexercise.utils.getViewModelFactory
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class CastListFragment : Fragment() {
 
     private val viewModel by viewModels<CastListViewModel> { getViewModelFactory() }
 
-    private lateinit var adapter: CastListAdapter
+    @Inject
+    lateinit var adapter: CastListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,7 +56,6 @@ class CastListFragment : Fragment() {
         //Init View
         recyclerView.layoutManager = GridLayoutManager(context, 2, RecyclerView.VERTICAL, false)
         recyclerView.setHasFixedSize(true)
-        adapter = CastListAdapter()
         recyclerView.adapter = adapter
     }
 

@@ -2,9 +2,11 @@ package pet.ca.podcastexercise
 
 import android.app.Application
 import android.content.Context
+import dagger.hilt.android.HiltAndroidApp
 import pet.ca.podcastexercise.data.source.ICollectionRepository
 import pet.ca.podcastexercise.data.source.IPodcastRepository
 
+@HiltAndroidApp
 class PodcastApplication : Application() {
 
     val podcastRepository: IPodcastRepository

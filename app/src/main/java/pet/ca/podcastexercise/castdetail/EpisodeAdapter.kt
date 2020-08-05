@@ -9,10 +9,11 @@ import kotlinx.android.synthetic.main.item_episode.view.*
 import pet.ca.podcastexercise.R
 import pet.ca.podcastexercise.data.ContentFeedEntity
 import pet.ca.podcastexercise.utils.DiffUtilCallbackImpl
+import javax.inject.Inject
 
-class EpisodeAdapter(
+class EpisodeAdapter @Inject constructor() : RecyclerView.Adapter<EpisodeAdapter.ViewHolder>() {
+
     private val contentList: MutableList<ContentFeedEntity> = mutableListOf()
-) : RecyclerView.Adapter<EpisodeAdapter.ViewHolder>() {
 
     var onEpisodeClickListener: ((View, ContentFeedEntity) -> Unit)? = null
 
