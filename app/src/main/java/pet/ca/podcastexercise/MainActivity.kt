@@ -3,6 +3,7 @@ package pet.ca.podcastexercise
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -32,5 +33,13 @@ class MainActivity : AppCompatActivity() {
     fun dismissLoading() {
         loadingView.visibility = View.GONE
         window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+    }
+
+    fun showNoData() {
+        AlertDialog.Builder(this, R.style.DialogTheme)
+            .setTitle("Something Error...")
+            .setMessage("No Data Found!")
+            .setPositiveButton(android.R.string.ok, null)
+            .show()
     }
 }

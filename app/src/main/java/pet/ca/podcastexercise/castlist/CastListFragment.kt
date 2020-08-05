@@ -42,6 +42,9 @@ class CastListFragment : Fragment() {
         viewModel.podcastListLiveData.observe(viewLifecycleOwner, Observer {
             adapter.updateList(it)
             (activity as MainActivity).dismissLoading()
+            if (it.isEmpty()){
+                (activity as MainActivity).showNoData()
+            }
         })
 
         setCallback()

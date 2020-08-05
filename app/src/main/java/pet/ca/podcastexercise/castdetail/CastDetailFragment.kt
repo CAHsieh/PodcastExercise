@@ -53,8 +53,11 @@ class CastDetailFragment : Fragment() {
         })
 
         viewModel.contentListLiveData.observe(viewLifecycleOwner, Observer {
-            (activity as MainActivity).dismissLoading()
             adapter.updateList(it)
+            (activity as MainActivity).dismissLoading()
+            if (it.isEmpty()){
+                (activity as MainActivity).showNoData()
+            }
         })
 
         setCallback()

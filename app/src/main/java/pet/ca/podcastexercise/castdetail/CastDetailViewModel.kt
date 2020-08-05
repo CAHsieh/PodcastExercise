@@ -29,12 +29,23 @@ class CastDetailViewModel constructor(
     fun start() {
         GlobalScope.launch(Dispatchers.Main) {
             collectionRepository.retrieveCollections {
-                it?.run {
+                if (it == null) {
+                    _contentListLiveData.postValue(contentList)
+                } else {
                     _collectionLiveData.postValue(it.collection)
 
                     contentList = it.contents
-                    _contentListLiveData.postValue(contentList.subList(0, dataSize))
+                    dataSize = if (contentList.size < dataSize) {
+                        contentList.size
+                    } else {
+                        dataSize
+                    }
 
+                    if (contentList.isEmpty()) {
+                        _contentListLiveData.postValue(contentList)
+                    } else {
+                        _contentListLiveData.postValue(contentList.subList(0, dataSize))
+                    }
                 }
             }
         }
